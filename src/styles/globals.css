@@ -172,6 +172,27 @@ form {
   padding: 5px 15px;
 }
 
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--secondary-color-dark);
+  padding: 0.5rem;
+}
+
+.table th {
+  background-color: var(--secondary-color-dark);
+  color: var(--background-light);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: left;
+}
+
+
 @media screen and (max-width: 900px) {
   .flashcard{
     min-width:auto;

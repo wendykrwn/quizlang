@@ -1,9 +1,9 @@
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../lib/firebase";
+import { db } from "../../../lib/firebase";
 import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
 
 
-const Admin = () => {
+const AdFlashCard = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
@@ -31,11 +31,11 @@ const Admin = () => {
         console.log("Document written with ID: ", docRef.id);
         setAnswer("")
         setQuestion("")
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
+      } catch (e) {
+        console.error("Error adding document: ", e);
       }
     }
+  }
 
   return (
     <div className="center h-screen flashcard-container">
@@ -46,7 +46,7 @@ const Admin = () => {
           <input className="input input-text" type="text" value={answer} name="answer" onChange={handleAnswerChange} />
           <div className="form-buttons">
             <input type="reset" className="btn" onClick={handleReset} />
-            <input type="submit" className="btn"/>
+            <input type="submit" className="btn" />
           </div>
         </form>
       </div>
@@ -56,4 +56,4 @@ const Admin = () => {
 
 
 
-export default Admin
+export default AdFlashCard
