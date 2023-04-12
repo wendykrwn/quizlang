@@ -38,6 +38,13 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --background-light:#FEFAE0;
+  --primary-color-dark: #283618;
+  --primary-color-light: #606C38;
+  --secondary-color-dark: #BC6C25;
+  --secondary-color-light: #DDA15E;
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -87,19 +94,90 @@ body {
 }
 
 body {
+
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background: var(--background-light);
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+h1{
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 6px;
+}
+
+.flashcard-container {
+  /* background-color: #fff; */
+  /* padding: 10px; */
+  background-color: var(--background-light);
+}
+
+.flashcard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-light);
+  justify-content: center;
+  /* box-shadow: 2px 4px 4px rgb(#0000ff, #0000ff, #0000ff); */
+  box-shadow: 0px 2px 20px rgba(20, 20, 20,0.2);
+  min-width: 500px;
+  min-height: 300px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.flashcard h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-buttons {
+  margin: 20px 0 5px 0;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.btn {
+  padding: 5px 15px;
+}
+
+@media screen and (max-width: 900px) {
+  .flashcard{
+    min-width:auto;
+    width: 100%;
+    box-shadow: none;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,6 +1,6 @@
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
 
 
 const Admin = () => {
@@ -15,7 +15,13 @@ const Admin = () => {
     const value = e.target.value
     setAnswer(value)
   }
-  const addAda = async () => {
+  const handleReset = () => {
+    setQuestion("")
+    setAnswer("")
+  }
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log("envoyer")
     if (question && answer) {
       try {
         const docRef = await addDoc(collection(db, "questions"), {
@@ -32,21 +38,22 @@ const Admin = () => {
     }
 
   return (
-    <div>
-      Ajouter un flashcard
-      <div>
-        <div>
-          <input type="text" value={question} name="question" onChange={handleQuestionChange} />
-        </div>
-        <div>
-          <input type="text" value={answer} name="answer" onChange={handleAnswerChange} />
-        </div>
-        <div>
-          <button onClick={addAda}>Ajouter</button>
-        </div>
+    <div className="center h-screen flashcard-container">
+      <div className="flashcard">
+        <h1>Ajouter un flashcard</h1>
+        <form onSubmit={handleSubmit} className="">
+          <input className="input input-text" type="text" value={question} name="question" onChange={handleQuestionChange} />
+          <input className="input input-text" type="text" value={answer} name="answer" onChange={handleAnswerChange} />
+          <div className="form-buttons">
+            <input type="reset" className="btn" onClick={handleReset} />
+            <input type="submit" className="btn"/>
+          </div>
+        </form>
       </div>
     </div>
   )
 }
+
+
 
 export default Admin
