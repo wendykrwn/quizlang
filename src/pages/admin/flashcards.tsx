@@ -2,7 +2,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { useEffect } from "react";
 
-
 type TableProps<T> = {
   data: T[];
 };
@@ -37,14 +36,16 @@ const FlashCards = ({ flashcards }) => {
   useEffect(() => {
     console.log({flashcards})
   }, [flashcards])
-  
+
+
   return (
     <div>
       <h1>Tous les Flaschards</h1>
       {
-        flashcards?.length > 0 && (
+        flashcards?.length > 0 ? (
           <Table data={flashcards} />
         )
+        : <div>Loading ...</div>
       }
     </div>
   )
