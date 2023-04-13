@@ -1,5 +1,6 @@
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
+import { flashcardsCollection } from "../../../lib/constant";
 import { ChangeEvent, FormEvent, FormEventHandler, useState } from "react";
 
 
@@ -24,10 +25,13 @@ const AdFlashCard = () => {
     console.log("envoyer")
     if (question && answer) {
       try {
-        const docRef = await addDoc(collection(db, "questions"), {
+        const now = serverTimestamp();
+        const docRef = await addDoc(collection(db, flashcardsCollection), {
           question: question,
-          answer: answer
-        });
+          answer: answer,
+          createdAt: now, 
+          updatedAt: now,
+        })
         console.log("Document written with ID: ", docRef.id);
         setAnswer("")
         setQuestion("")
